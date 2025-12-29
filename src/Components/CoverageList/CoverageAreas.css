@@ -1,0 +1,47 @@
+.coverage-section {
+	width: 100%;
+	margin: 4rem 0rem;
+	background-color: #fff;
+}
+
+.coverage-container {
+	max-width: 900px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.coverage-container h2 {
+	font-size: clamp(2rem, 4vw, 2.75rem);
+	margin-bottom: 2.5rem;
+	color: #111;
+}
+
+.coverage-list {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 0.75rem 1.5rem;
+	list-style: none;
+	padding: 0;
+	margin: 0 auto;
+	max-width: 900px;
+	text-align: center;
+	font-size: 1.15rem;
+	color: #222;
+}
+
+.coverage-list li {
+	padding: 0.25rem 0;
+}
+
+@media (max-width: 1024px) {
+	.coverage-list {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 600px) {
+	.coverage-list {
+		grid-template-columns: repeat(2, 1fr);
+		font-size: 1.05rem;
+	}
+}
