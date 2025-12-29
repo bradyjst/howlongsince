@@ -1,13 +1,7 @@
 import { useEffect } from "react";
 import { Layout } from "../Components/Layout/Layout";
-import { HeroSection } from "../Sections/HeroSection/HeroSection";
-import { TalkingSection } from "../Sections/TalkingSection/TalkingSection";
-import { ReviewsSection } from "../Sections/ReviewSection/ReviewSection";
-import { ServicesSection } from "../Sections/ServiceSection/ServiceSection";
 import "../animations.css";
-import { CoverageAreas } from "../Components/CoverageList/CoverageAreas";
-import { MapSection } from "../Sections/MapSection/MapSection";
-
+import { ServicesSection } from "../Sections/ServiceSection/ServiceSection";
 export const HomePage = () => {
 	useEffect(() => {
 		const observer = new IntersectionObserver(
@@ -28,12 +22,7 @@ export const HomePage = () => {
 
 	return (
 		<Layout>
-			<HeroSection />
 			<ServicesSection />
-			<TalkingSection />
-			<CoverageAreas />
-			<MapSection />
-			<ReviewsSection />
 		</Layout>
 	);
 };
