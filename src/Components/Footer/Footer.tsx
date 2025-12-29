@@ -6,21 +6,15 @@ export const Footer: React.FC = () => {
 		<footer className="site-footer">
 			<div className="footer-content">
 				<div className="footer-col footer-left">
-					<span className="footer-name">
-						NSCO Electric – Licensed Electrician
-					</span>
+					<span className="footer-name"></span>
 				</div>
 
 				<div className="footer-col footer-center">
-					<a href="tel:1-778-344-2686" className="footer-link">
-						1-778-344-2686
-					</a>
+					<a href="tel:1-778-344-2686" className="footer-link"></a>
 				</div>
 
 				<div className="footer-col footer-right">
-					<a href="mailto:info@nscoelectric.com" className="footer-link">
-						info@nscoelectric.com
-					</a>
+					<a href="mailto:info@nscoelectric.com" className="footer-link"></a>
 				</div>
 			</div>
 		</footer>

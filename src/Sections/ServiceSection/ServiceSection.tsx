@@ -5,7 +5,6 @@ const SERVICES = [
 	{
 		image: "soon.avif",
 		alt: "Under Construction",
-		link: "/",
 		title: "Coming Soon",
 		description:
 			"A database for events and how long since they happened. Coming soon!",
