@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HomePage } from "./Pages/HomePage";
-import { EventPage } from "./Pages/EventPage";
-import { AboutPage } from "./Pages/About";
-import { PrivacyPolicyPage } from "./Pages/PrivacyPolicy";
-import { TermsPage } from "./Pages/TermsConditions";
+import { HomePage } from "./pages/HomePage";
+import { EventPage } from "./pages/EventPage";
+import { AboutPage } from "./pages/About";
+import { PrivacyPolicyPage } from "./pages/PrivacyPolicy";
+import { TermsPage } from "./pages/TermsConditions";
 
 function App() {
 	return (
