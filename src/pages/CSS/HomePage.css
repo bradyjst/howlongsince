@@ -1,0 +1,81 @@
+/* ===== Home Page ===== */
+
+.home-page {
+	text-align: center;
+}
+
+/* Page header */
+.home-page .page-header {
+	margin-bottom: 1.25rem;
+}
+
+/* Search bar */
+.home-page .search-bar {
+	margin: 1.5rem auto 2rem auto;
+	max-width: 520px;
+}
+
+/* Intro paragraph (if/when you add one) */
+.home-intro {
+	max-width: 600px;
+	margin: 1.5rem auto;
+	line-height: 1.7;
+	color: var(--text-secondary);
+}
+
+/* ===== Search Results ===== */
+
+.search-results {
+	list-style: none;
+	padding: 0;
+	margin: 1.5rem auto;
+	max-width: 600px;
+	text-align: center;
+}
+
+.search-results li {
+	margin-bottom: 0.75rem;
+}
+
+/* Result links */
+.search-results a {
+	color: var(--accent-primary);
+	font-size: 1rem;
+	text-align: center;
+	padding-left: 0;
+	list-style: none;
+}
+
+.search-results a:hover {
+	text-decoration: underline;
+	text-align: center;
+}
+
+/* Empty state */
+.search-empty {
+	color: var(--text-secondary);
+	font-style: italic;
+}
+
+/* ===== About Section ===== */
+
+.home-about {
+	max-width: 620px;
+	margin: 2rem auto;
+	padding: 1rem;
+	line-height: 1.7;
+	color: var(--text-secondary);
+}
+
+.home-about p {
+	margin-bottom: 1rem;
+}
+
+.home-about strong {
+	color: var(--text-primary);
+	font-weight: 600;
+}
+
+.home-about em {
+	font-style: italic;
+}

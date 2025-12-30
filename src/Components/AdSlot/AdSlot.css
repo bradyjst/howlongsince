@@ -1,0 +1,13 @@
+.ad-slot {
+	margin: 1.5rem auto;
+	padding: 1rem;
+	max-width: 600px;
+	text-align: center;
+	font-size: 0.85rem;
+	color: var(--text-secondary);
+	background-color: var(--bg-primary);
+}
+
+.ad-slot p {
+	margin: 0;
+}

@@ -5,11 +5,30 @@ body {
 	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 	width: 100%;
 	overflow-x: hidden;
+	background-color: var(--bg-primary);
+	color: var(--text-secondary);
 }
 
 .root {
 	margin: 0;
 	padding: 0;
+}
+
+:root {
+	/* Backgrounds */
+	--bg-primary: #f4f1ec; /* parchment */
+	--bg-secondary: #faf8f4; /* lighter parchment (cards / ads) */
+
+	/* Text */
+	--text-primary: #2b2a27; /* ink black */
+	--text-secondary: #4b463f; /* faded ink */
+
+	/* Accents */
+	--accent-primary: #7c5c3e; /* aged leather / brass */
+	--accent-success: #556b2f; /* olive green (time passed) */
+
+	/* UI */
+	--border-subtle: #d6cfc4;
 }
 
 h1,
@@ -19,4 +38,14 @@ h4,
 h5,
 h6 {
 	margin: 0;
+}
+
+@media (min-width: 768px) {
+	.time-since {
+		font-size: 2rem;
+	}
+
+	.event-header h1 {
+		font-size: 2.25rem;
+	}
 }

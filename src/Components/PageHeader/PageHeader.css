@@ -1,7 +1,8 @@
 .page-header {
 	width: 100%;
-	padding: 4rem 0rem;
+	padding: 2rem 0rem;
 	text-align: center;
+	color: var(--text-primary);
 }
 
 .page-header-container {
@@ -13,10 +14,9 @@
 .page-header-container h1 {
 	font-size: clamp(2.2rem, 4vw, 3rem);
 	margin-bottom: 1rem;
-	color: #111;
+	color: var(--text-primary);
 }
 
 .page-header-container p {
-	font-size: 1.1rem;
-	color: #555;
+	color: var(--text-primary);
 }
