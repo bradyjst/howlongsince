@@ -209,7 +209,7 @@ export default function Studio() {
 
 				<textarea
 					placeholder="Summary (optional)"
-					rows={4}
+					rows={10}
 					value={form.summary}
 					onChange={(e) => setForm({ ...form, summary: e.target.value })}
 				/>
