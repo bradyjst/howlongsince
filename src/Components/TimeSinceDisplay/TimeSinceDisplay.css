@@ -1,10 +1,22 @@
 .time-since {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
 	gap: 0.5rem;
 	margin: 1.5rem 0;
 	font-size: 3.5em;
+
+	min-width: 0;
+	flex-wrap: wrap;
+}
+
+.time-row {
+	display: flex;
+	align-items: baseline;
+	gap: 0.5rem;
+
+	min-width: 0;
+	flex-wrap: wrap;
 }
 
 .time-value {
@@ -16,14 +28,9 @@
 	color: var(--text-secondary);
 }
 
-.time-row {
-	display: flex;
-	align-items: baseline;
-	gap: 0.5rem;
-}
-
-@media (max-width: 480px) {
+@media (max-width: 750px) {
 	.time-since {
-		font-size: 2.5em;
+		font-size: 2.1em;
+		justify-content: center;
 	}
 }

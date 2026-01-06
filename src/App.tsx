@@ -4,16 +4,18 @@ import { EventPage } from "./pages/EventPage";
 import { AboutPage } from "./pages/About";
 import { PrivacyPolicyPage } from "./pages/PrivacyPolicy";
 import { TermsPage } from "./pages/TermsConditions";
+import Studio from "./pages/Studio";
 
 function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
-				<Route path="/how-long-since/:id" element={<EventPage />} />
+				<Route path="/how-long-since/:slug" element={<EventPage />} />
 				<Route path="/about" element={<AboutPage />} />
 				<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 				<Route path="/terms" element={<TermsPage />} />
+				<Route path="/studio" element={<Studio />} />
 			</Routes>
 		</BrowserRouter>
 	);

@@ -29,7 +29,7 @@ export const TimeSinceDisplay = ({ time }: TimeSinceDisplayProps) => {
 			</div>
 
 			<div className="time-row">
-				<span className="time-unit">ago</span>
+				<span className="time-unit">.</span>
 			</div>
 		</div>
 	);

@@ -17,10 +17,12 @@
 
 .event-sources li {
 	margin: 0.5rem auto;
-	width: fit-content;
+	max-width: 100%;
 }
 
 .event-sources a {
 	text-decoration: none;
 	color: var(--accent-primary);
+	word-break: break-word;
+	overflow-wrap: anywhere;
 }

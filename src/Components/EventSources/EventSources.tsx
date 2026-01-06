@@ -1,5 +1,9 @@
-import type { EventSource } from "../../types";
 import "./EventSources.css";
+
+export type EventSource = {
+	label: string;
+	url: string;
+};
 
 type EventSourcesProps = {
 	sources: EventSource[];
@@ -8,13 +12,14 @@ type EventSourcesProps = {
 export const EventSources = ({ sources }: EventSourcesProps) => {
 	return (
 		<section className="event-sources">
-			<h2>Sources</h2>
 			<ul>
 				{sources.map((source) => (
 					<li key={source.url}>
-						<a href={source.url} target="_blank" rel="noreferrer">
-							{source.label}
-						</a>
+						<h2>
+							<a href={source.url} target="_blank" rel="noreferrer">
+								{source.label}
+							</a>
+						</h2>
 					</li>
 				))}
 			</ul>
