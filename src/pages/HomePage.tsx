@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Layout } from "../Components/Layout/Layout";
 import { EVENT_CATEGORIES } from "../events";
-import { useNavigate } from "react-router-dom";
 import { PageHeader } from "../Components/PageHeader/PageHeader";
 import SearchBar from "../Components/SearchBar/SearchBar";
 import { supabase } from "../lib/supabase";
@@ -20,13 +19,13 @@ export const HomePage = () => {
 	const [query, setQuery] = useState("");
 	const [events, setEvents] = useState<EventRow[]>([]);
 	const [loading, setLoading] = useState(true);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		supabase
 			.from("events")
 			.select("id, title, slug, summary")
 			.eq("verified", true)
-			.is("deleted_at", null)
 			.then(({ data }) => {
 				if (data) setEvents(data);
 				setLoading(false);
@@ -48,8 +47,6 @@ export const HomePage = () => {
 					return searchableText.includes(query.toLowerCase());
 			  });
 
-	const navigate = useNavigate();
-
 	async function goToRandomEvent() {
 		const { data, error } = await supabase
 			.from("events")
@@ -58,8 +55,9 @@ export const HomePage = () => {
 
 		if (error || !data || data.length === 0) return;
 
-		const random = data[Math.floor(Math.random() * data.length)];
-		navigate(`/how-long-since/${random.slug}`);
+		const index = crypto.getRandomValues(new Uint32Array(1))[0] % data.length;
+
+		navigate(`/how-long-since/${data[index].slug}`);
 	}
 
 	async function goToRandomFromCategory(category: string) {
@@ -67,7 +65,7 @@ export const HomePage = () => {
 			.from("events")
 			.select("slug")
 			.eq("verified", true)
-			.eq("category", category);
+			.contains("categories", [category]);
 
 		if (error || !data || data.length === 0) return;
 
@@ -97,6 +95,7 @@ export const HomePage = () => {
 					))}
 				</ul>
 			)}
+
 			<div className="category-buttons">
 				<button className="category-btn random" onClick={goToRandomEvent}>
 					🎲 Random Event
