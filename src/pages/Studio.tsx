@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 type EventPayload = {
 	title: string;
 	date: string;
-	category: string;
+	categories: string[];
 	sourceUrl: string;
 	summary: string;
 	verified: boolean;
@@ -42,17 +42,19 @@ const STUDIO_PASSWORD = import.meta.env.VITE_STUDIO_PASSWORD;
 export default function Studio() {
 	const navigate = useNavigate();
 	const checked = useRef(false);
-	const [existingSlugs, setExistingSlugs] = useState<string[]>([]);
+
 	const [authorized, setAuthorized] = useState(false);
+	const [existingSlugs, setExistingSlugs] = useState<string[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [message, setMessage] = useState<string | null>(null);
+
 	const [wikiQuery, setWikiQuery] = useState("");
 	const [wikiResults, setWikiResults] = useState<WikiSearchResult[]>([]);
 
 	const [form, setForm] = useState<EventPayload>({
 		title: "",
 		date: "",
-		category: "",
+		categories: [],
 		sourceUrl: "",
 		summary: "",
 		verified: false,
@@ -60,6 +62,7 @@ export default function Studio() {
 
 	const slug = generateUniqueSlug(form.title, existingSlugs);
 
+	// auth
 	useEffect(() => {
 		if (checked.current) return;
 		checked.current = true;
@@ -72,6 +75,7 @@ export default function Studio() {
 		}
 	}, [navigate]);
 
+	// load existing slugs
 	useEffect(() => {
 		if (!authorized) return;
 
@@ -79,9 +83,7 @@ export default function Studio() {
 			.from("events")
 			.select("slug")
 			.then(({ data }) => {
-				if (data) {
-					setExistingSlugs(data.map((e) => e.slug));
-				}
+				if (data) setExistingSlugs(data.map((e) => e.slug));
 			});
 	}, [authorized]);
 
@@ -100,7 +102,7 @@ export default function Studio() {
 				title: form.title,
 				slug,
 				occurred_at: form.date,
-				category: form.category,
+				categories: form.categories,
 				summary: form.summary,
 				verified: form.verified,
 				sources: form.sourceUrl
@@ -114,7 +116,7 @@ export default function Studio() {
 			setForm({
 				title: "",
 				date: "",
-				category: "",
+				categories: [],
 				sourceUrl: "",
 				summary: "",
 				verified: false,
@@ -127,8 +129,10 @@ export default function Studio() {
 		}
 	}
 
+	if (!authorized) return null;
+
 	return (
-		<div style={{ padding: 24, maxWidth: 700 }}>
+		<div style={{ padding: 24, maxWidth: 720 }}>
 			<h1>Studio</h1>
 
 			<hr />
@@ -152,13 +156,12 @@ export default function Studio() {
 							type="button"
 							onClick={async () => {
 								const summary = await getWikiSummary(r.title);
-
-								setForm({
-									...form,
+								setForm((f) => ({
+									...f,
 									title: summary.title,
 									summary: summary.extract,
 									sourceUrl: summary.content_urls.desktop.page,
-								});
+								}));
 							}}
 						>
 							{r.title}
@@ -181,25 +184,32 @@ export default function Studio() {
 					required
 					onChange={(e) => {
 						const dateOnly = e.target.value.split("T")[0];
-						setForm({
-							...form,
-							date: `${dateOnly}T00:00`,
-						});
+						setForm({ ...form, date: `${dateOnly}T00:00` });
 					}}
 				/>
 
-				<select
-					value={form.category}
-					required
-					onChange={(e) => setForm({ ...form, category: e.target.value })}
-				>
-					<option value="">Select category</option>
-					{EVENT_CATEGORIES.map((cat) => (
-						<option key={cat} value={cat}>
-							{cat}
-						</option>
-					))}
-				</select>
+				<div>
+					<strong>Categories</strong>
+					<div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+						{EVENT_CATEGORIES.map((cat) => (
+							<label key={cat} style={{ fontSize: 14 }}>
+								<input
+									type="checkbox"
+									checked={form.categories.includes(cat)}
+									onChange={(e) =>
+										setForm({
+											...form,
+											categories: e.target.checked
+												? [...form.categories, cat]
+												: form.categories.filter((c) => c !== cat),
+										})
+									}
+								/>{" "}
+								{cat}
+							</label>
+						))}
+					</div>
+				</div>
 
 				<input
 					placeholder="Source URL (optional)"
@@ -208,7 +218,7 @@ export default function Studio() {
 				/>
 
 				<textarea
-					placeholder="Summary (optional)"
+					placeholder="Summary"
 					rows={10}
 					value={form.summary}
 					onChange={(e) => setForm({ ...form, summary: e.target.value })}
@@ -229,13 +239,6 @@ export default function Studio() {
 
 				{message && <p>{message}</p>}
 			</form>
-			<p>
-				{" "}
-				"Politics", "Wars & Conflicts", "Disasters", "Deaths", "Science &
-				Technology", "Space", "Health", "Economy", "Culture", "Sports",
-				"Entertainment", "Crime", "Protests & Movements", "Companies &
-				Products", "Internet & Media",
-			</p>
 		</div>
 	);
 }
