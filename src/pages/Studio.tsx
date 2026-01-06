@@ -229,6 +229,13 @@ export default function Studio() {
 
 				{message && <p>{message}</p>}
 			</form>
+			<p>
+				{" "}
+				"Politics", "Wars & Conflicts", "Disasters", "Deaths", "Science &
+				Technology", "Space", "Health", "Economy", "Culture", "Sports",
+				"Entertainment", "Crime", "Protests & Movements", "Companies &
+				Products", "Internet & Media",
+			</p>
 		</div>
 	);
 }
